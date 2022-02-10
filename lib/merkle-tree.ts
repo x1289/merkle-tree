@@ -4,13 +4,13 @@ const hash = createHash('sha256');
 /**
  * Represents a Merkle Tree
  */
-class MerkleTree {
+export default class MerkleTree {
   merkleRoot: String;
   layers: Array<Array<String>>;
   leafs: Array<String>;
 
   /**
-   *
+   * Initializes member variables.
    */
   constructor() {
     this.merkleRoot = null;
@@ -94,5 +94,3 @@ class MerkleTree {
     return this.layers[layerIndex];
   }
 }
-
-module.exports = MerkleTree;
