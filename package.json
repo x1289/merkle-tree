@@ -7,6 +7,7 @@
   "types": "dist/merkle-tree.js.map",
   "scripts": {
     "prepublish": "npm run build",
+    "gen": "jsdoc ./dist/merkle-tree.js ./README.md",
     "build": "tsc -p tsconfig.json",
     "lint": "eslint",
     "clean": "tsc --build --clean"
