@@ -2,8 +2,8 @@
  * Represents a Merkle Tree
  */
 export default class MerkleTree {
-    merkleRoot: String;
-    layers: Array<Array<String>>;
+    merkleRoot: string;
+    layers: Array<Array<string>>;
     leafs: Array<String>;
     /**
      * Initializes member variables.

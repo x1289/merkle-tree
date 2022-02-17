@@ -62,6 +62,12 @@ merkle root: '${this.merkleRoot}'`;
     buildTree() {
         if (this.leafs.length === 0)
             return;
+        if (this.leafs.length === 1) {
+            const result = this._hash(this.leafs[0]);
+            this.layers.push([result]);
+            this.merkleRoot = result;
+            return;
+        }
         if (this.leafs.length % 2 !== 0) {
             this.leafs.push(this.leafs[this.leafs.length - 1]);
         }

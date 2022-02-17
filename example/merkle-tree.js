@@ -9,4 +9,5 @@ mt.addLeaf('Something else...');
 
 console.log(mt);
 mt.buildTree();
+console.log(mt);
 console.log(mt.toString());
