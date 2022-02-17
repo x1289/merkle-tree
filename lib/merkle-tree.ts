@@ -7,7 +7,7 @@ const hash = createHash('sha256');
 export default class MerkleTree {
   merkleRoot: string;
   layers: Array<Array<string>>;
-  leafs: Array<String>;
+  leafs: Array<string>;
 
   /**
    * Initializes member variables.
@@ -20,8 +20,8 @@ export default class MerkleTree {
 
   /**
    * Computes the SHA256 hash of a value.
-   * @param {String} element String representation of value to be hashed.
-   * @return {String} hash of the element parameter
+   * @param {string} element String representation of value to be hashed.
+   * @return {string} hash of the element parameter
    */
   private _hash(element) {
     return hash.copy().update(element).digest('hex');
@@ -30,10 +30,10 @@ export default class MerkleTree {
 
   /**
    * Builds the next layer above the current layer in the tree.
-   * @param {Array<String>} currentLayer The current layer in the tree.
-   * @return {Array<String>} The layer on top of the current layer.
+   * @param {Array<string>} currentLayer The current layer in the tree.
+   * @return {Array<string>} The layer on top of the current layer.
    */
-  private buildNewLayer(currentLayer: Array<String>) {
+  private buildNewLayer(currentLayer: Array<string>) {
     const newLayer = [];
     for (let i = 0; i < currentLayer.length; i += 2) {
       const element = currentLayer[i];
@@ -47,7 +47,7 @@ export default class MerkleTree {
 
   /**
    * Custom toString for objects of this class.
-   * @return {String} String with basic object information.
+   * @return {string} String with basic object information.
    */
   toString() {
     if (!this.merkleRoot) return `Merkle Tree - Tree not built.`;
@@ -57,9 +57,9 @@ merkle root: '${this.merkleRoot}'`;
 
   /**
    * Adds an element to the leafs of the tree.
-   * @param {String} element Element to be added to the tree leafs.
+   * @param {string} element Element to be added to the tree leafs.
    */
-  addLeaf(element: String) {
+  addLeaf(element: string) {
     this.leafs.push(element);
   }
 
@@ -69,6 +69,12 @@ merkle root: '${this.merkleRoot}'`;
    */
   buildTree() {
     if (this.leafs.length === 0) return;
+    if (this.leafs.length === 1) {
+      const result = this._hash(this.leafs[0]);
+      this.layers.push([result]);
+      this.merkleRoot = result;
+      return;
+    }
     if (this.leafs.length % 2 !== 0) {
       this.leafs.push(this.leafs[this.leafs.length - 1]);
     }
@@ -86,9 +92,9 @@ merkle root: '${this.merkleRoot}'`;
   /**
    * Getter for a layer in the merkle tree by index.
    * @param {number} layerIndex index for desired layer.
-   * @return {Array<String> | undefined} array of hashes for this layer.
+   * @return {Array<string> | undefined} array of hashes for this layer.
    */
-  getLayer(layerIndex = 0): Array<String> | undefined {
+  getLayer(layerIndex = 0): Array<string> | undefined {
     if (typeof layerIndex !== 'number') return;
     if (layerIndex < 0 || layerIndex > this.layers.length) return;
     return this.layers[layerIndex];
