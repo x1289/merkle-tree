@@ -50,7 +50,7 @@ export default class MerkleTree {
    * @return {string} String with basic object information.
    */
   toString() {
-    if (!this.merkleRoot) return `Merkle Tree - Tree not built.`;
+    if (!this.merkleRoot) return 'Merkle Tree - Tree not built.';
     return `Merkle Tree - tree height: ${this.layers.length}, \
 merkle root: '${this.merkleRoot}'`;
   }

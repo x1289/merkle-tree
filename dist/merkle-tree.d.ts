@@ -4,33 +4,33 @@
 export default class MerkleTree {
     merkleRoot: string;
     layers: Array<Array<string>>;
-    leafs: Array<String>;
+    leafs: Array<string>;
     /**
      * Initializes member variables.
      */
     constructor();
     /**
      * Computes the SHA256 hash of a value.
-     * @param {String} element String representation of value to be hashed.
-     * @return {String} hash of the element parameter
+     * @param {string} element String representation of value to be hashed.
+     * @return {string} hash of the element parameter
      */
     private _hash;
     /**
      * Builds the next layer above the current layer in the tree.
-     * @param {Array<String>} currentLayer The current layer in the tree.
-     * @return {Array<String>} The layer on top of the current layer.
+     * @param {Array<string>} currentLayer The current layer in the tree.
+     * @return {Array<string>} The layer on top of the current layer.
      */
     private buildNewLayer;
     /**
      * Custom toString for objects of this class.
-     * @return {String} String with basic object information.
+     * @return {string} String with basic object information.
      */
     toString(): string;
     /**
      * Adds an element to the leafs of the tree.
-     * @param {String} element Element to be added to the tree leafs.
+     * @param {string} element Element to be added to the tree leafs.
      */
-    addLeaf(element: String): void;
+    addLeaf(element: string): void;
     /**
      * Builds the merkle tree from the leafs currently added.
      * @return {void} no return value. Sets object member variables.
@@ -39,7 +39,7 @@ export default class MerkleTree {
     /**
      * Getter for a layer in the merkle tree by index.
      * @param {number} layerIndex index for desired layer.
-     * @return {Array<String> | undefined} array of hashes for this layer.
+     * @return {Array<string> | undefined} array of hashes for this layer.
      */
-    getLayer(layerIndex?: number): Array<String> | undefined;
+    getLayer(layerIndex?: number): Array<string> | undefined;
 }
